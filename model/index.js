@@ -12,11 +12,12 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     idle: dbConfig.pool.idle,
   },
 });
+
 const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.user = require("./userModel")(sequelize, Sequelize);
-db.vote = require("./voteModel")(sequelize, Sequelize);
+db.User = require("./userModel")(sequelize, Sequelize);
+db.Vote = require("./voteModel")(sequelize, Sequelize);
 
 module.exports = db;
