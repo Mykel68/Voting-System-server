@@ -35,3 +35,17 @@ exports.updateUser = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.deleteUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await db.User.findOne({ where: { user_id: id } });
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    await user.destroy();
+    res.status(200).json({ msg: "User deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

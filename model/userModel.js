@@ -2,7 +2,6 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define("User", {
     user_id: {
       type: DataTypes.STRING,
-      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -17,7 +16,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     role: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM,
+      values: ["admin", "user"],
+    },
+    has_voted: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
   });

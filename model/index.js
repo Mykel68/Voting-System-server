@@ -1,5 +1,6 @@
 const dbConfig = require("../config/dbConfig");
 const Sequelize = require("sequelize");
+const { DataTypes } = Sequelize;
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -12,6 +13,14 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     idle: dbConfig.pool.idle,
   },
 });
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch((error) => {
+    console.error("Unable to connect to the database:", error);
+  });
 
 const db = {};
 db.Sequelize = Sequelize;
