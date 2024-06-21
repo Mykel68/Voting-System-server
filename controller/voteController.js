@@ -1,5 +1,9 @@
 const db = require("../model/index");
 
+exports.vote = async (req, res) => {
+  const { id } = req.params;
+};
+
 exports.getAllVotes = async (req, res) => {
   try {
     const votes = await db.Vote.findAll();

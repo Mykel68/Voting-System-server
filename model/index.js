@@ -29,4 +29,7 @@ db.sequelize = sequelize;
 db.User = require("./userModel")(sequelize, Sequelize);
 db.Vote = require("./voteModel")(sequelize, Sequelize);
 
+db.User.hasOne(Vote, { foreignKey: "user_id" });
+db.Vote.belongsTo(User, { foreignKey: "user_id" });
+
 module.exports = db;
